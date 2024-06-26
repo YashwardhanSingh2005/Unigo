@@ -1,15 +1,19 @@
 import { Text, View } from "react-native";
 import React from "react";
-import { Link } from "expo-router";
+import { Redirect, router } from "expo-router";
+import CustomButton from "../Components/CustomButton";
 
 const App = () => {
   return (
-    <View className="flex-1 items-center justify-center bg-[#0A0A0A]">
-      <Text className="text-3xl text-white">CollEve!</Text>
-      <Link href="./(auth)/login" style={{ color: "blue" }}>
-        {" "}
-        Login Click Here!
-      </Link>
+    <View className="flex-1 items-center  min-h-[85vh] justify-center bg-[#212121]">
+      <Text className="text-3xl text-white">U N I G O</Text>
+      <CustomButton
+        title="Continue with Login"
+        handlepress={() => {
+          router.push("/(auth)/login");
+        }}
+        containerStyles="w-full mt-7"
+      />
     </View>
   );
 };
