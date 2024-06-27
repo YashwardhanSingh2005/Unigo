@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   glow: {
     textShadowColor: "white", // Adjust glow color as needed
-    textShadowRadius: 30, // Adjust glow radius as needed
+    textShadowRadius: 20, // Adjust glow radius as needed
   },
   catchphrase: {
     color: "white",
