@@ -9,8 +9,8 @@ const App = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <Text style={styles.catchphrase}>One app, all Events</Text>
-        <Text style={styles.catchphrase}> Welcome To </Text>
+        {/* <Text style={styles.catchphrase}>One app, all Events</Text>
+        <Text style={styles.catchphrase}> Welcome To </Text> */}
         <Image
           source={require("../assets/unigo_logo.png")}
           style={{ width: 400, height: 400 }}
