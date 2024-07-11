@@ -1,20 +1,41 @@
-import React from "react";
-import { Text, View, StyleSheet, SafeAreaView, Image } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  ImageBackground,
+  Animated,
+  ViewStyle,
+  TextStyle,
+  ImageStyle,
+} from "react-native";
 import CustomButton from "../Components/CustomButton";
 import { useRouter } from "expo-router";
 
-const App = () => {
+const App: React.FC = () => {
   const router = useRouter();
+  const [fadeAnim] = useState<Animated.Value>(new Animated.Value(0));
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        {/* <Text style={styles.catchphrase}>One app, all Events</Text>
-        <Text style={styles.catchphrase}> Welcome To </Text> */}
-        <Image
-          source={require("../assets/unigo_logo.png")}
-          style={{ width: 400, height: 400 }}
-        />
+        <Animated.View
+          style={[styles.backgroundContainer, { opacity: fadeAnim }]}
+        >
+          <ImageBackground
+            source={require("../assets/Background1.png")}
+            style={styles.image}
+          />
+        </Animated.View>
         <Text style={[styles.text, styles.glow]}>
           U{" "}
           <Text style={[styles.text, styles.glow]}>
@@ -29,18 +50,27 @@ const App = () => {
         </Text>
         <CustomButton
           title="Continue with Email"
-          handlepress={() => {
-            router.push("/(auth)/login");
-          }}
-          containerStyles="w-60 mt-7"
+          handlepress={() => router.push("/(auth)/login")}
+          containerStyles="w-60 mt-7 absolute bottom-1/4 border-2 border-[#FFFFFF]"
+          textStyles="text-[#FFFFFF] font-bold"
         />
       </View>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
+interface Styles {
+  safeArea: ViewStyle;
+  container: ViewStyle;
+  backgroundContainer: ViewStyle;
+  text: TextStyle;
+  glow: TextStyle;
+  image: ImageStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   safeArea: {
+    position: "relative",
     flex: 1,
     backgroundColor: "#000000",
   },
@@ -48,10 +78,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    minHeight: "85%", // Adjust as needed
+    minHeight: "85%",
+  },
+  backgroundContainer: {
+    ...StyleSheet.absoluteFillObject,
   },
   text: {
     color: "white",
+    position: "absolute",
+    top: 220,
     fontSize: 50,
     fontWeight: "bold",
     textTransform: "uppercase",
@@ -60,12 +95,13 @@ const styles = StyleSheet.create({
     textShadowRadius: 20,
   },
   glow: {
-    textShadowColor: "white", // Adjust glow color as needed
-    textShadowRadius: 20, // Adjust glow radius as needed
+    textShadowColor: "white",
+    textShadowRadius: 20,
   },
-  catchphrase: {
-    color: "white",
-    fontSize: 20,
+  image: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
   },
 });
 
