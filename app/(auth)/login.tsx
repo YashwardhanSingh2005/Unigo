@@ -10,7 +10,7 @@ export default function LoginScreen() {
         <TouchableOpacity className="mb-4" onPress={() => router.back()}>
           <Image
             className="w-8 h-8"
-            source={require("C:/dev/React-Native/CollEve/assets/icons8-back-80.png")}
+            source={require("./../../assets/icons8-back-80.png")}
           />
         </TouchableOpacity>
 
@@ -24,7 +24,7 @@ export default function LoginScreen() {
 
           <Image
             className="w-60 h-40 bg-gray-500 rounded-lg mt-4 mb-8"
-            source={require("C:/dev/React-Native/CollEve/assets/unigo_logo.png")}
+            source={require("./../../assets/unigo_logo.png")}
           />
           {/* <View className="w-20 h-20 bg-gray-500 rounded-lg mt-4 mb-8" /> */}
         </View>
